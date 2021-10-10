@@ -13,11 +13,10 @@ jobs:
     - uses: actions/checkout@v2
     
     - name: Get commit number
-      working-directory: ./linux
       id: vars
-      run: |
-        echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-
+      run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+      working-directory: linux
+      
     - name: Download and unzip linux repository, and build the unzipped source code
       shell: bash
       run: |
