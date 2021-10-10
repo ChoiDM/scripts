@@ -14,7 +14,7 @@ jobs:
     
     - name: Get commit number
       id: vars
-      run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+      run: echo "::set-output name=sha_short::$(echo $(git submodule) | cut -d' ' -f1)" 
       working-directory: linux
       
     - name: Download and unzip linux repository, and build the unzipped source code
