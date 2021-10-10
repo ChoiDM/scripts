@@ -12,7 +12,7 @@ jobs:
     - name: Get commit number
       id: vars
       run: |
-        echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
 
     - name: Download and unzip linux repository, and build the unzipped source code
       shell: bash
