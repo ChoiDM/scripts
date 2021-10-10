@@ -11,13 +11,13 @@ jobs:
     
     - name: Get commit number
       id: vars
-        run: |
-          echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      run: |
+        echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
 
     - name: Download and unzip linux repository, and build the unzipped source code
-        shell: bash
-          run: |
-                  wget https://github.com/Choi/linux/archive/${{ steps.vars.outputs.sha_short }}.zip -O linux.zip
-                  unzip linux.zip
-                  ./build-linux.sh linux tinyconfig
+      shell: bash
+      run: |
+        wget https://github.com/Choi/linux/archive/${{ steps.vars.outputs.sha_short }}.zip -O linux.zip
+        unzip linux.zip
+        ./build-linux.sh linux tinyconfig
                    
