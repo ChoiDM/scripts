@@ -1,0 +1,26 @@
+name: Part C-2. test.yml
+
+on:
+  push:
+    paths:
+      - test
+      - test/**
+      - test/*
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Get the second character of the second line from the tail.
+      id: vars
+      run: |
+        make -C test > compile.log
+        echo "::set-output name=error_stars::$(echo $(tail -2 compile.log | head -1 | cut -d' ' -f1))" 
+        rm complie.log
+
+    - name: Raise error if the second character is ***
+      run: |
+        if [ ${{ steps.vars.outputs.error_stars }} == "***" ]; then; RAISE_ERROR; fi
