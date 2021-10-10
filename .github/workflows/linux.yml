@@ -3,7 +3,7 @@ name: Part C-1. linux.yml
 on:
   push:
     paths:
-      - linux/**
+      - linux
 
 jobs:
   build:
