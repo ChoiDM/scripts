@@ -4,4 +4,4 @@ executables=$(patsubst %.c,%.exe,$(sources))
 all: $(executables)
 
 %.exe: %.c
-	$(CC) -oo $@ $^
+	$(CC) -o $@ $^
