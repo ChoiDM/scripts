@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - linux
+      - linux/**
+      - linux/*
 
 jobs:
   build:
@@ -16,10 +18,10 @@ jobs:
       id: vars
       run: echo "::set-output name=sha_short::$(git rev-parse HEAD:linux)" 
       working-directory: linux
-      
+                        
     - name: Download and unzip linux repository, and build the unzipped source code
       shell: bash
       run: |
-        wget https://github.com/ChoiDM/linux/archive/${{ steps.vars.outputs.sha_short }}.zip -O linux.zip
-        unzip linux.zip
-        ./build-linux.sh linux tinyconfig
+        wget https://github.com/ChoiDM/linux/archive/${{ steps.vars.outputs.sha_short }}.zip -O linux_down.zip
+        unzip -qq linux_down.zip -d linux_down
+        ./build-linux.sh linux_down tinyconfig
