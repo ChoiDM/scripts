@@ -1,9 +1,9 @@
-name: Part C-1. linux.yml
+name: Part C-2. test.yml
 
 on:
   push:
     paths:
-      - linux
+      - test
 
 jobs:
   build:
